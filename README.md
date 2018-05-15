@@ -1,6 +1,13 @@
 # dnsCloud
 Program to create word clouds of DNS traffic. 
 
+Quick start: 
+    
+    ./pysniff.py eth0 dnslookups.txt 
+
+    ./cloud.py dnslookups.txt dnslookups.png 
+
+
 # Install
 You will need to install some prereqs. 
 
