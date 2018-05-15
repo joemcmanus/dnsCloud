@@ -1,7 +1,7 @@
 # dnsCloud
 Program to create word clouds of DNS traffic. 
 
-#Install
+# Install
 You will need to install some prereqs. 
 
  - pip3 install wordcloud
@@ -9,7 +9,7 @@ You will need to install some prereqs.
  - pip3 install pcapy 
  - pip3 install scapy
  
-#Use
+# Use
 First you will want to create a list of DNS lookups. To do that run sniff.py INTERFACE OUTFILE 
 
     dnsCloud joe$ ./pysniff.py  --help 
@@ -50,5 +50,5 @@ To create a wordcloud using the file dnslookups.txt and an image dnslookups.png 
     Source file: dnslookups.txt
     Output file: dnslookups.png
 
-
+![](https://raw.githubusercontent.com/joemcmanus/dnsCloud/master/wordcloud.png)
 
