@@ -57,5 +57,35 @@ To create a wordcloud using the file dnslookups.txt and an image dnslookups.png 
     Source file: dnslookups.txt
     Output file: dnslookups.png
 
+# Automate
+I run this out of cron. first create your crontab. 
+
+    $crontab -e
+    */5 * * * * /home/joe/cloud.py /data/dnsqueries.txt /var/www/html/dnscloud/wordcloud.png
+
+Then have sniff.py start on boot. 
+ 
+   $vi /usr/lib/systemd/system/pysniff.service
+    #Startup file for pysniff.pif
+    #run systemctl enable pysniff.service 
+    
+    [Unit]
+    Description=Python DNS Sniffing Service
+    After=multi-user.target
+    
+    [Service]
+    type=oneshot
+    PIDFile=/var/run/pysniff.pid
+    WorkingDirectory=/root
+    ExecStart=/root/pysniff.py eno2 /data/dnsqueries.txt --pid
+    RestartSec=10s
+    Restart=always
+    ExecReload=/bin/kill -s HUP $MAINPID
+    ExecStop=/bin/kill -s TERM $MAINPID
+    
+    [Install]
+    WantedBy=multi-user.target
+    
+
 ![](https://raw.githubusercontent.com/joemcmanus/dnsCloud/master/wordcloud.png)
 
